@@ -4,6 +4,13 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class Formulario extends React.Component {
+    
+    constructor(props){
+        super(props);
+        this.nombre = React.createRef();
+        this.apellido= React.createRef();
+    }
+
   render() {
     return (
       <div className="container">
@@ -17,9 +24,10 @@ class Formulario extends React.Component {
                 </label>
                 <input
                   type="text"
+                  ref={this.nombre}
                   class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="nombre"
+                  placeholder="Nombre"
+                  
                 />
               </div>
 
@@ -29,8 +37,9 @@ class Formulario extends React.Component {
                 </label>
                 <input
                   type="text"
+                  ref={this.apellido}
                   class="form-control"
-                  id="apellido"
+                  placeholder="Apellido"
                 />
               </div>    
                        
