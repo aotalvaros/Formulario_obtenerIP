@@ -11,6 +11,10 @@ class Formulario extends React.Component {
         this.apellido= React.createRef();
     }
 
+    eventoReferencia(evento){
+        window.alert(`${this.nombre.current.value} ${this.nombre.current.value}`);
+    }
+
   render() {
     return (
       <div className="container">
@@ -43,7 +47,7 @@ class Formulario extends React.Component {
                 />
               </div>    
                        
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" class="btn btn-primary" onClick={this.eventoReferencia.bind(this)}>
                 Obtener mi IP
               </button>
             </form>
