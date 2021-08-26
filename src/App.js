@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 export const App = () => {
+ 
   const [formulario, setFormulario] = useState({
     nombre: "",
     apellido: "",
@@ -16,7 +17,7 @@ export const App = () => {
     }
   }
 
-  function valirFormulario(evento) {
+  function validarFormulario(evento) {
     evento.preventDefault();
 
     if (formulario.nombre === "" || formulario.apellido === "") {
@@ -65,7 +66,7 @@ export const App = () => {
               <button
                 type="submit"
                 className="btn btn-primary"
-                onClick={valirFormulario}
+                onClick={validarFormulario}
               >
                 Obtener mi IP
               </button>
@@ -73,7 +74,7 @@ export const App = () => {
               {usuarioIP ? (
                 <p>
                   hola {formulario.nombre} {formulario.apellido} tu direccion ip
-                  es: {usuarioIP}{" "}
+                  es: {usuarioIP}
                 </p>
               ) : null}
             </form>
