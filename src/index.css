@@ -1,35 +1,16 @@
 body {
-    font: 14px "Century Gothic", Futura, sans-serif;
-    margin: 20px;
-  }
+  font: 14px "Century Gothic", Futura, sans-serif;
+  margin: 20px;
+}
   
-  ol, ul {
-    padding-left: 30px;
-  }
+p {
+  margin-top: 20px !important;
+}
+
+.btn-primary{
+  background-color: #216101 !important;
   
-  .board-row:after {
-    clear: both;
-    content: "";
-    display: table;
-  }
-  
-  .status {
-    margin-bottom: 10px;
-  }
-  
-  
-  .kbd-navigation .square:focus {
-    background: #ddd;
-  }
-  
-  .game {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .game-info {
-    margin-left: 20px;
-  }
+}
 
   .abs-center {
     display: flex;
@@ -45,15 +26,6 @@ body {
   .card-container.card {
     max-width: 350px;
     padding: 40px 40px;
-}
-
-.btn {
-    font-weight: 700;
-    height: 36px;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-    cursor: default;
 }
 
 .form-signin .form-control:focus {
