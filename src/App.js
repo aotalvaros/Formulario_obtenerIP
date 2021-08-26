@@ -11,6 +11,9 @@ export const App = () => {
 
   function actualizarCampos(evento) {
     setFormulario({ ...formulario, [evento.target.name]: evento.target.value });
+    if (evento.target.value === "") {
+      enviarIpUsuario(null);
+    }
   }
 
   function valirFormulario(evento) { 
@@ -19,7 +22,6 @@ export const App = () => {
 
     if (formulario.nombre === "" || formulario.apellido === "") {
       alert("ingresar los valores de nombre y apellido ");
-      enviarIpUsuario(null);
     }
     else{
     fetch('https://api.ipify.org/?format=json')
