@@ -38,27 +38,27 @@ export const App = () => {
         <div className="abs-center">
           <div className="card card-container">
             <form>
-              <div class="mb-3">
-                <label for="nombre" class="form-label">
+              <div className="mb-3">
+                <label htmlFor="nombre" className="form-label">
                   Ingrese su nombre
                 </label>
                 <input
                   type="text"
                   value={formulario.nombre}
-                  class="form-control"
+                  className="form-control"
                   name="nombre"
                   onChange={actualizarCampos}
                 />
               </div>
 
-              <div class="mb-3">
-                <label for="apellido" class="form-label">
+              <div className="mb-3">
+                <label htmlFor="apellido" className="form-label">
                   Ingrese su apellido
                 </label>
                 <input
                   type="text"
                   value={formulario.apellido}
-                  class="form-control"            
+                  className="form-control"            
                   name="apellido"
                   onChange={actualizarCampos}
                 />
@@ -66,7 +66,7 @@ export const App = () => {
 
               <button
                 type="submit"
-                class="btn btn-primary"
+                className="btn btn-primary"
                 onClick={valirFormulario}
               >
                 Obtener mi IP
