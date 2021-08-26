@@ -12,18 +12,18 @@ p {
   
 }
 
-  .abs-center {
+.abs-center {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-  }
+}
   
-  .form {
+.form {
     width: 450px;
-  }
+}
   
-  .card-container.card {
+.card-container.card {
     max-width: 350px;
     padding: 40px 40px;
 }
