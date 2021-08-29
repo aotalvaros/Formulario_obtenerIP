@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
+import { Modal,ModalHeader,ModalBody} from "reactstrap";
 
 export const App = () => {
- 
+
   const [formulario, setFormulario] = useState({
     nombre: "",
     apellido: "",
+    model: false
   });
 
   const [usuarioIP, enviarIpUsuario] = useState("");
 
   function actualizarCampos(evento) {
     setFormulario({ ...formulario, [evento.target.name]: evento.target.value });
-   
+
     if (evento.target.value === "") {
       enviarIpUsuario(null);
     }
@@ -28,7 +30,13 @@ export const App = () => {
         .then((datos) => {
           enviarIpUsuario(datos.ip);
         });
+
+       abrirModal();
+
     }
+  }
+  const abrirModal=()=>{
+    formulario.model=true;
   }
 
   return (
@@ -63,11 +71,7 @@ export const App = () => {
                 />
               </div>
 
-              <button
-                type="submit"
-                className="btn btn-primary"
-                onClick={validarFormulario}
-              >
+              <button type="submit" className="btn btn-primary" onClick={validarFormulario}>
                 Obtener mi IP
               </button>
 
@@ -81,6 +85,17 @@ export const App = () => {
           </div>
         </div>
       </div>
+
+      <Modal isOpen={formulario.model}>
+        <ModalHeader>
+          Direccion IP
+        </ModalHeader>
+        <ModalBody>
+          <label> Hola {formulario.nombre} {formulario.apellido} tu direccion ip
+                  es: {usuarioIP} </label>
+        </ModalBody>
+      </Modal>
     </>
+  
   );
 };
