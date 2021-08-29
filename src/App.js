@@ -82,7 +82,8 @@ export const App = () => {
 
       <Modal isOpen={formulario.model}>
         <ModalHeader>
-          Direccion IP
+          <img className="img-serponsive logo-img" 
+          src="https://sedeelectronica.antioquia.gov.co/info/antioquia_se/media/bloque2071.png"></img>
         </ModalHeader>
         <ModalBody>
           <label> Hola {formulario.nombre} {formulario.apellido} tu direccion ip
