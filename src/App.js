@@ -1,13 +1,13 @@
 import React, {  useState } from "react";
-import { Modal,ModalHeader,ModalBody} from "reactstrap";
+import { Modal,ModalHeader,ModalBody, ModalFooter} from "reactstrap";
 
 export const App = () => {
 
   const [formulario, setFormulario] = useState({
     nombre: "",
     apellido: "",
-    model: false
   });
+  const [ventana,setVentana]= useState({model: false});
 
   const [usuarioIP, enviarIpUsuario] = useState("");
 
@@ -36,7 +36,7 @@ export const App = () => {
     }
   }
   const abrirModal=()=>{
-    formulario.model=true;
+     setVentana({model: !ventana.model})
   }
 
   return (
@@ -74,13 +74,12 @@ export const App = () => {
               <button type="submit" className="btn btn-primary" onClick={validarFormulario}>
                 Obtener mi IP
               </button>
-
             </form>
           </div>
         </div>
       </div>
 
-      <Modal isOpen={formulario.model}>
+      <Modal isOpen={ventana.model}>
         <ModalHeader>
           <img className="img-serponsive logo-img" 
           src="https://sedeelectronica.antioquia.gov.co/info/antioquia_se/media/bloque2071.png"></img>
@@ -89,6 +88,9 @@ export const App = () => {
           <label> Hola {formulario.nombre} {formulario.apellido} tu direccion ip
                   es: {usuarioIP} </label>
         </ModalBody>
+        <ModalFooter>
+          <button className="btn btn-primary" onClick={abrirModal}>Cerrar</button>
+        </ModalFooter>
       </Modal>
     </>
   
