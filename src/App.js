@@ -75,12 +75,6 @@ export const App = () => {
                 Obtener mi IP
               </button>
 
-              {usuarioIP ? (
-                <p>
-                  hola {formulario.nombre} {formulario.apellido} tu direccion ip
-                  es: {usuarioIP}
-                </p>
-              ) : null}
             </form>
           </div>
         </div>
