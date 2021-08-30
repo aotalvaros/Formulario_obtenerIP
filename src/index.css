@@ -27,6 +27,7 @@ p {
 .card-container.card {
     max-width: 350px;
     padding: 40px 40px;
+    border: 2px solid rgba(153, 163, 164 )
 }
 
 .form-signin .form-control:focus {
