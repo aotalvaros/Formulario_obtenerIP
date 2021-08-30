@@ -1,5 +1,5 @@
 import React, {  useState } from "react";
-import { Modal,ModalHeader,ModalBody, ModalFooter} from "reactstrap";
+import { Modals } from "./CarpetaModals/Modals";
 
 export const App = () => {
 
@@ -83,20 +83,13 @@ export const App = () => {
           </div>
         </div>
       </div>
+     
+      <Modals nombre={formulario.nombre}
+      apellido={formulario.apellido}
+      estado={ventana.model}
+      cerrarModel={abrirModal}
+      IP={usuarioIP}/>
 
-      <Modal isOpen={ventana.model}>
-        <ModalHeader>
-          <img className="img-serponsive logo-img" 
-          src="https://sedeelectronica.antioquia.gov.co/info/antioquia_se/media/bloque2071.png"></img>
-        </ModalHeader>
-        <ModalBody>
-          <label> Hola {formulario.nombre} {formulario.apellido} tu direccion ip
-                  es: {usuarioIP} </label>
-        </ModalBody>
-        <ModalFooter>
-          <button className="btn btn-primary" onClick={abrirModal}>Cerrar</button>
-        </ModalFooter>
-      </Modal>
     </>
   
   );
