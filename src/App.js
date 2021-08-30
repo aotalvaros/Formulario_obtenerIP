@@ -45,6 +45,11 @@ export const App = () => {
         <div className="abs-center">
           <div className="card card-container">
             <form>
+            <img className="img-serponsive logo-img" 
+          src="https://sedeelectronica.antioquia.gov.co/info/antioquia_se/media/bloque2071.png"></img>
+          <div>
+            
+          </div>
               <div className="mb-3">
                 <label htmlFor="nombre" className="form-label">
                   Ingrese su nombre
