@@ -1,13 +1,13 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { Modals } from "./CarpetaModals/Modals";
+import { Formulario } from "./Formularios/Formulario";
 
 export const App = () => {
-
   const [formulario, setFormulario] = useState({
     nombre: "",
     apellido: "",
   });
-  const [ventana,setVentana]= useState({model: false});
+  const [ventana, setVentana] = useState({ model: false });
 
   const [usuarioIP, enviarIpUsuario] = useState("");
 
@@ -22,7 +22,10 @@ export const App = () => {
   function validarFormulario(evento) {
     evento.preventDefault();
 
-    if (formulario.nombre === "" || formulario.apellido === "") {
+    if (
+      formulario.nombre.trim().length === 0 ||
+      formulario.apellido.trim().length === 0
+    ) {
       alert("ingresar los valores de nombre y apellido ");
     } else {
       fetch("https://api.ipify.org/?format=json")
@@ -31,66 +34,43 @@ export const App = () => {
           enviarIpUsuario(datos.ip);
         });
 
-       abrirModal();
-
+      abrirModal();
     }
   }
-  const abrirModal=()=>{
-     setVentana({model: !ventana.model})
-  }
+  const abrirModal = () => {
+    setVentana({ model: !ventana.model });
+  };
 
   return (
     <>
       <div className="container">
         <div className="abs-center">
           <div className="card card-container">
-            <form>
-            <img className="img-serponsive logo-img" 
-          src="https://sedeelectronica.antioquia.gov.co/info/antioquia_se/media/bloque2071.png"></img>
-          <div>
-            
-          </div>
-              <div className="mb-3">
-                <label htmlFor="nombre" className="form-label">
-                  Ingrese su nombre
-                </label>
-                <input
-                  type="text"
-                  value={formulario.nombre}
-                  className="form-control"
-                  name="nombre"
-                  onChange={actualizarCampos}
-                />
-              </div>
+            <Formulario
+              nombre={formulario.nombre}
+              apellido={formulario.apellido}
+              actualizarCampos={actualizarCampos}
+              validarFormulario={validarFormulario}
+            />
 
-              <div className="mb-3">
-                <label htmlFor="apellido" className="form-label">
-                  Ingrese su apellido
-                </label>
-                <input
-                  type="text"
-                  value={formulario.apellido}
-                  className="form-control"
-                  name="apellido"
-                  onChange={actualizarCampos}
-                />
-              </div>
-
-              <button type="submit" className="btn btn-primary" onClick={validarFormulario}>
-                Obtener mi IP
-              </button>
-            </form>
+            <button
+              type="submit"
+              className="btn btn-primary"
+              onClick={validarFormulario}
+            >
+              Obtener mi IP
+            </button>
           </div>
         </div>
       </div>
-     
-      <Modals nombre={formulario.nombre}
-      apellido={formulario.apellido}
-      estado={ventana.model}
-      cerrarModel={abrirModal}
-      IP={usuarioIP}/>
 
+      <Modals
+        nombre={formulario.nombre}
+        apellido={formulario.apellido}
+        estado={ventana.model}
+        cerrarModel={abrirModal}
+        IP={usuarioIP}
+      />
     </>
-  
   );
 };
