@@ -41,3 +41,8 @@ p {
   width: auto;
   height: auto;
 }
+img{
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+}
