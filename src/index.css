@@ -5,6 +5,7 @@ body {
   
 p {
   margin-top: 20px !important;
+  color: red;
 }
 
 .btn-primary{
