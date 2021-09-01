@@ -3,8 +3,6 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  Col,
-  Row,
 } from "reactstrap";
 
 export const Modals = ({
@@ -21,7 +19,7 @@ export const Modals = ({
       <Modal isOpen={estado}>
         <ModalHeader>
           <img
-            className="img-serponsive logo-img"
+            className="img-serponsive logo-img" alt=""
             src="https://sedeelectronica.antioquia.gov.co/info/antioquia_se/media/bloque2071.png"
           ></img>
         </ModalHeader>
@@ -40,11 +38,13 @@ export const Modals = ({
       <Modal isOpen={estado2}>
         <ModalHeader>
           <img
-            className="img-serponsive logo-img"
+            className="img-serponsive logo-img" alt=""
             src="https://sedeelectronica.antioquia.gov.co/info/antioquia_se/media/bloque2071.png"
           ></img>
         </ModalHeader>
         <ModalBody className="border">
+        <img  alt=""className="img-serponsive logo-img" src="https://image.flaticon.com/icons/png/512/929/929416.png">
+        </img>
           <label>
             En este momento el sistema no esta disponible, intentalo mas tarde
           </label>
