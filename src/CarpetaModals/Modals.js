@@ -1,22 +1,60 @@
-import {Modal, ModalHeader,ModalBody, ModalFooter} from "reactstrap";
+import {
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Col,
+  Row,
+} from "reactstrap";
 
-
-export const Modals=({nombre,apellido,estado,cerrarModel,IP})=>{
- return(
+export const Modals = ({
+  nombre,
+  apellido,
+  estado,
+  estado2,
+  cerrarModel,
+  cerrarModel2,
+  IP,
+}) => {
+  return (
     <>
-    <Modal isOpen={estado}>      
-     <ModalHeader>
-             <img className="img-serponsive logo-img" 
-             src="https://sedeelectronica.antioquia.gov.co/info/antioquia_se/media/bloque2071.png"></img>
-           </ModalHeader>
-           <ModalBody>
-             <label>Hola {nombre} {apellido} tu direccion IP es: {IP} </label>
-           </ModalBody>
-           <ModalFooter>
-           <button className="btn btn-primary" onClick={cerrarModel}>Cerrar</button>
-           </ModalFooter>
+      <Modal isOpen={estado}>
+        <ModalHeader>
+          <img
+            className="img-serponsive logo-img"
+            src="https://sedeelectronica.antioquia.gov.co/info/antioquia_se/media/bloque2071.png"
+          ></img>
+        </ModalHeader>
+        <ModalBody>
+          <label>
+            Hola {nombre} {apellido} tu direccion IP es: {IP}{" "}
+          </label>
+        </ModalBody>
+        <ModalFooter>
+          <button className="btn btn-primary" onClick={cerrarModel}>
+            Cerrar
+          </button>
+        </ModalFooter>
+      </Modal>
 
-           </Modal>
+      <Modal isOpen={estado2}>
+        <ModalHeader>
+          <img
+            className="img-serponsive logo-img"
+            src="https://sedeelectronica.antioquia.gov.co/info/antioquia_se/media/bloque2071.png"
+          ></img>
+        </ModalHeader>
+        <ModalBody className="border">
+          <label>
+            En este momento el sistema no esta disponible, intentalo mas tarde
+          </label>
+        </ModalBody>
+        <ModalFooter>
+          <button className="border" onClick={cerrarModel2}>
+            Cerrar
+          </button>
+        </ModalFooter>
+      </Modal>
     </>
- );
- }
+  );
+};
