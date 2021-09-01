@@ -1,21 +1,18 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Modals } from "../CarpetaModals/Modals";
+import { Form, Button, Row, Col } from "react-bootstrap";
 
 export const Formulario = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
 
   const [formulario, setFormulario] = useState({
     nombre: "",
     apellido: "",
   });
   const [ventana, setVentana] = useState({ model: false });
-
+  const [validated, setValidated] = useState(false);
   const [usuarioIP, enviarIpUsuario] = useState("");
+  const [esValido, formularioEsValido] = useState({ nombre: false,apellido: false });
 
   function actualizarCampos(evento) {
     setFormulario({ ...formulario, [evento.target.name]: evento.target.value });
@@ -25,15 +22,55 @@ export const Formulario = () => {
     }
   }
 
-  const consumoApi=()=> {   
-      fetch("https://api.ipify.org/?format=json")
-        .then((respuesta) => respuesta.json())
-        .then((datos) => {
-          enviarIpUsuario(datos.ip);
-        });
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    const prevents = () => {
+      event.preventDefault();
+      event.stopPropagation();
+    };
+    const validaprevents=()=>{
+      prevents();
+      formularioEsValido({
+        nombre: true,
+        apellido: true,
+      });
+      setValidated(false);
+    }
 
-      abrirModal();
-  }
+    if (form.checkValidity() === false) {
+      prevents();
+    }
+
+    if ( expresiones.numero.test(formulario.nombre) || expresiones.numero.test(formulario.apellido) 
+    ) {
+     validaprevents()
+    }
+    else if(expresiones.usuario.test(formulario.nombre)&&expresiones.usuario.test(formulario.apellido)) {
+      prevents();
+      formularioEsValido({
+        nombre: false,
+        apellido: false,
+      });
+      setValidated(true);
+      consumoApi()
+    }else{
+     validaprevents();  
+    }
+  };
+  const expresiones = {
+    usuario: /^[A-Za-z]+$/i,
+    numero: /^[\s0-9]+$/u,
+  };
+
+  const consumoApi = () => {
+    fetch("https://api.ipify.org/?format=json")
+      .then((respuesta) => respuesta.json())
+      .then((datos) => {
+        enviarIpUsuario(datos.ip);
+      });
+
+    abrirModal();
+  };
 
   const abrirModal = () => {
     setVentana({ model: !ventana.model });
@@ -41,68 +78,54 @@ export const Formulario = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(consumoApi)}>
+      <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <img
           className="img-serponsive logo-img"
           src="https://sedeelectronica.antioquia.gov.co/info/antioquia_se/media/bloque2071.png"
         ></img>
-        <div></div>
-        <div className="mb-3">
-          <label htmlFor="nombre" className="form-label">
-            Nombre
-          </label>
-          <input
-            {...register("nombre", {
-              required: true,
-              maxLength: 20,
-              minLength: 1,
-              pattern: /^[A-Za-z]+$/i
-            }
-            )}
+
+        <Form.Group as={Col} controlId="validationCustom01">
+          <Form.Label>Nombre</Form.Label>
+          <Form.Control
+            required
             type="text"
             value={formulario.nombre}
             className="form-control"
             name="nombre"
             onChange={actualizarCampos}
+            isInvalid={esValido.nombre}
           />
-        </div>
-        {errors?.nombre?.type === "required" && <p>Ingrese su nombre</p>}
-        {errors?.nombre?.type === "pattern" && (
-        <p>Solo caracteres alfanumericos </p>
-      )}
+          <Form.Control.Feedback type="invalid">
+            ingresa un nombre valido
+          </Form.Control.Feedback>
+        </Form.Group>
 
-        <div className="mb-3">
-          <label htmlFor="apellido" className="form-label">
-            Apellido
-          </label>
-          <input
-            {...register("apellido", {
-              required: true,
-              maxLength: 20,
-              minLength: 1,
-              pattern: /^[A-Za-z]+$/i
-            })}
+        <Form.Group as={Col} controlId="validationCustom01">
+          <Form.Label>Apellido</Form.Label>
+          <Form.Control
+            required
             type="text"
             value={formulario.apellido}
             className="form-control"
             name="apellido"
             onChange={actualizarCampos}
+            isInvalid={esValido.apellido}
           />
-        </div>
+          <Form.Control.Feedback type="invalid">
+            ingresa un apellido valido
+          </Form.Control.Feedback>
 
-        {errors?.apellido?.type === "required" && <p>Ingrese su apellido</p>}
-        {errors?.apellido?.type === "pattern" && (
-        <p>Solo caracteres alfanumericos </p>
-      )}
-        
-        <button
+          <button
           type="submit"
-          className="btn btn-primary"   
+          className="btn btn-primary " 
         >
           Obtener mi IP
         </button>
-      </form>
 
+        </Form.Group>
+         
+      </Form>
+     
       <Modals
         nombre={formulario.nombre}
         apellido={formulario.apellido}
