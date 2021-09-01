@@ -1,18 +1,19 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import { Modals } from "../CarpetaModals/Modals";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Col } from "react-bootstrap";
 
 export const Formulario = () => {
-
   const [formulario, setFormulario] = useState({
     nombre: "",
     apellido: "",
   });
-  const [ventana, setVentana] = useState({ model: false });
+  const [ventana, setVentana] = useState({ model: false, model2: false });
   const [validated, setValidated] = useState(false);
   const [usuarioIP, enviarIpUsuario] = useState("");
-  const [esValido, formularioEsValido] = useState({ nombre: false,apellido: false });
+  const [esValido, formularioEsValido] = useState({
+    nombre: false,
+    apellido: false,
+  });
 
   function actualizarCampos(evento) {
     setFormulario({ ...formulario, [evento.target.name]: evento.target.value });
@@ -28,33 +29,37 @@ export const Formulario = () => {
       event.preventDefault();
       event.stopPropagation();
     };
-    const validaprevents=()=>{
+    const validaprevents = () => {
       prevents();
       formularioEsValido({
         nombre: true,
         apellido: true,
       });
       setValidated(false);
-    }
+    };
 
     if (form.checkValidity() === false) {
       prevents();
     }
 
-    if ( expresiones.numero.test(formulario.nombre) || expresiones.numero.test(formulario.apellido) 
+    if (
+      expresiones.numero.test(formulario.nombre) ||
+      expresiones.numero.test(formulario.apellido)
     ) {
-     validaprevents()
-    }
-    else if(expresiones.usuario.test(formulario.nombre)&&expresiones.usuario.test(formulario.apellido)) {
+      validaprevents();
+    } else if (
+      expresiones.usuario.test(formulario.nombre) &&
+      expresiones.usuario.test(formulario.apellido)
+    ) {
       prevents();
       formularioEsValido({
         nombre: false,
         apellido: false,
       });
       setValidated(true);
-      consumoApi()
-    }else{
-     validaprevents();  
+      consumoApi();
+    } else {
+      validaprevents();
     }
   };
   const expresiones = {
@@ -63,17 +68,20 @@ export const Formulario = () => {
   };
 
   const consumoApi = () => {
-    fetch("https://api.ipify.org/?format=json")
+    fetch("https://ai.ipify.org/?format=json")
       .then((respuesta) => respuesta.json())
       .then((datos) => {
         enviarIpUsuario(datos.ip);
-      });
-
-    abrirModal();
+      })
+      .then((respuesta) => abrirModal())
+      .catch((erro) => abrirModal2());
   };
 
   const abrirModal = () => {
     setVentana({ model: !ventana.model });
+  };
+  const abrirModal2 = () => {
+    setVentana({ model2: !ventana.model2 });
   };
 
   return (
@@ -115,22 +123,19 @@ export const Formulario = () => {
             ingresa un apellido valido
           </Form.Control.Feedback>
 
-          <button
-          type="submit"
-          className="btn btn-primary " 
-        >
-          Obtener mi IP
-        </button>
-
+          <button type="submit" className="btn btn-primary ">
+            Obtener mi IP
+          </button>
         </Form.Group>
-         
       </Form>
-     
+
       <Modals
         nombre={formulario.nombre}
         apellido={formulario.apellido}
         estado={ventana.model}
+        estado2={ventana.model2}
         cerrarModel={abrirModal}
+        cerrarModel2={abrirModal2}
         IP={usuarioIP}
       />
     </>
