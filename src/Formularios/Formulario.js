@@ -68,7 +68,7 @@ export const Formulario = () => {
   };
 
   const consumoApi = () => {
-    fetch("https://ai.ipify.org/?format=json")
+    fetch("https://api.ipify.org/?format=json")
       .then((respuesta) => respuesta.json())
       .then((datos) => {
         enviarIpUsuario(datos.ip);
@@ -88,7 +88,7 @@ export const Formulario = () => {
     <>
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <img
-          className="img-serponsive logo-img"
+          className="img-serponsive logo-img" alt=""
           src="https://sedeelectronica.antioquia.gov.co/info/antioquia_se/media/bloque2071.png"
         ></img>
 
