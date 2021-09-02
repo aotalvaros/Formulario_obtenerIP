@@ -46,3 +46,35 @@ img {
   border: 2px solid palevioletred;
   border-radius: 3px;
 }
+
+.modal-content {
+  
+  flex-direction: column !important;
+  width: 30% !important;
+  background-color: rgba(0,0,0,.0001) !important;
+  border: none !important;
+  margin: auto !important;
+}
+
+.contenedorInformacion .modal-content {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  pointer-events: auto !important;
+  background-color: #fff !important;
+  background-clip: padding-box !important;
+  border: 1px solid rgba(0,0,0,.2) !important;
+  border-radius: .3rem !important;
+  outline: 0 !important;
+}
+.modal-header {
+  display: flex !important;
+  flex-shrink: 0 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 1rem 1rem !important;
+  border-bottom: 1px solid #dee2e6 !important;
+  border-top-left-radius: calc(.3rem - 1px) !important;
+  border-top-right-radius: calc(.3rem - 1px) !important;
+}
