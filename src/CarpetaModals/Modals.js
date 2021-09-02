@@ -16,7 +16,7 @@ export const Modals = ({
 }) => {
   return (
     <>
-      <Modal isOpen={estado}>
+      <Modal isOpen={estado} className="contenedorInformacion">
         <ModalHeader>
           <img
             className="img-serponsive logo-img" alt=""
@@ -35,7 +35,7 @@ export const Modals = ({
         </ModalFooter>
       </Modal>
 
-      <Modal isOpen={estado2}>
+      <Modal isOpen={estado2} className="contenedorInformacion">
         <ModalHeader>
           <img
             className="img-serponsive logo-img" alt=""
